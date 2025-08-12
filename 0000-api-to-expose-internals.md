@@ -31,12 +31,12 @@ The global variable may be an object with a property "version" that represent th
 This global variable might, for instance, have an "onLoad" callback function that would be called by react once react is fully loaded just in case someone wanted to rely on it but couldn't make sure to have their code executed after react. Then you'd have to check if this global object is available and has a "version" property to know if react is loaded to start using the api and if not then you'd create this object with your "onLoad" callback.
 
 We may also add some functions to this global object to interact with react:
-- getState(component, stateIndex?): Change the state of the component of the first argument. stateIndex refers to the nth call of useState(). If omitted, it will return the state of all calls of useState() in an array.
-- setState(component, stateIndex, newValue): Change the state of the component.
-- resetState(component, stateIndex?): Reset the state to its default value. If no stateIndex is given, reset the state of all useState() calls.
-- rerender(component): Force a rerender.
-- remount(component): Force a remount. Basically, call all useEffects() again even if their dependencies didn't change. Useful, for instance, if a component makes a request to load the data that it displays and you want to reload it without refreshing the page or having to run the logic that would unmount and remount it.
-- getReactRoot(): Get the root react element. You can traverse the children of the root component to get the reference that you'd pass to the other functions.
+- `getState(component, stateIndex?)`: Change the state of the component of the first argument. `stateIndex` refers to the nth call of `useState()`. If omitted, it will return the state of all calls of `useState()` in an array.
+- `setState(component, stateIndex, newValue)`: Change the state of the component.
+- `resetState(component, stateIndex?)`: Reset the state to its default value. If no `stateIndex` is given, reset the state of all `useState()` calls.
+- `rerender(component)`: Force a rerender.
+- `remount(component)`: Force a remount. Basically, call all `useEffects()` again even if their dependencies didn't change. Useful, for instance, if a component makes a request to load the data that it displays and you want to reload it without refreshing the page or having to run the logic that would unmount and remount it.
+- `getReactRoot()`: Get the root react element. You can traverse the children of the root component to get the reference that you'd pass to the other functions.
 
 # Drawbacks
 
@@ -102,3 +102,4 @@ TBD
 Optional, but suggested for first drafts. What parts of the design are still TBD?
 
 We need to decide what to name this global variable and what to include in the first versions.
+
